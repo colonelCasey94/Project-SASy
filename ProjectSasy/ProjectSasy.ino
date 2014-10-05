@@ -27,9 +27,13 @@ void input(float voltages[]);
 //calculates average of voltages
 float average(float voltages[]);
 
+<<<<<<< HEAD
 //stores the voltage input 
 float inputs[1000];
 float inputRef = 2.5;
+=======
+float averages[1000];
+>>>>>>> origin/hannah
 
 //sets up LCD output and analog input
 void setup(){
@@ -60,5 +64,14 @@ void input(float voltages[]){
 }
 
 float average(float voltages[]){
+  int i = 0;   //counting varible
+  float averageValue;
+
+  for(i=0; i<1000; ++i)   //loop to iterate through array
+{
+    averageValue = voltages[i]+voltages[i+1];
+}
+  averageValue = averageValue/1000;    //takes the total voltage and divides by number of inputs
   
+  return averageValue;
 }
