@@ -16,7 +16,7 @@
 void input(float voltages[]);
 float average(float voltages[]);
 
-float averages[1000] = 0;
+float averages[1000];
 
 //sets up LCD output and analog input
 void setup(){
@@ -32,5 +32,14 @@ void input(float voltages[]){
 }
 
 float average(float voltages[]){
+  int i = 0;   //counting varible
+  float averageValue;
+
+  for(i=0; i<1000; ++i)   //loop to iterate through array
+{
+    averageValue = voltages[i]+voltages[i+1];
+}
+  averageValue = averageValue/1000;    //takes the total voltage and divides by number of inputs
   
+  return averageValue;
 }
