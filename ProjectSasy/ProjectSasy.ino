@@ -13,22 +13,50 @@
   (unknown)
 */
 
+#include <LiquidCrystal.h>
+#include <math.h>
+
+//LCD creation
+//LCD_RS pint to digital pin 12
+//LCD_E pin to digital pin 11
+//LCD_D(4:7) pins to digital pins (5:2)
+LiquidCrystal lcd (12,11,5,4,3,2);
+
+//creates input array
 void input(float voltages[]);
+//calculates average of voltages
 float average(float voltages[]);
 
-float averages[1000] = 0;
+//stores the voltage input 
+float inputs[1000];
+float inputRef = 2.5;
 
 //sets up LCD output and analog input
 void setup(){
-  
+  lcd.begin(16, 2);
+  lcd.print("hello, world!");
+  delay(3000);
 }
 
 void loop(){
-  
+  input(inputs);
+  lcd.setCursor(0,1);
+  lcd.print("voltage = ");
+  int ones = (int)average(inputs)%10;
+  int decimals = (int)(average(inputs)*100)%100;
+  lcd.print(ones);
+  lcd.print(".");
+  lcd.print(decimals);  
 }
 
 void input(float voltages[]){
-  
+  lcd.setCursor(0,0);
+  lcd.print("recordning...");
+  int i = 0;
+  for (i = 0; i < 1000; i++){
+    voltages[i] = abs((analogRead(A0)*(5.0 / 1023.0))-inputRef) ;
+    delay(3);
+  }
 }
 
 float average(float voltages[]){
