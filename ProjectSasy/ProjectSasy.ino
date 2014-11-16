@@ -39,6 +39,7 @@ void setup(){
   delay(3000);
   Serial.begin(9600);
   Serial.print("hello initialize");
+  pinMode(13, OUTPUT);
 }
 
 void loop(){
@@ -52,6 +53,13 @@ void loop(){
  temp = average(inputs);
  
  Serial.print(temp,6);
+ 
+ if(temp>0.1)
+ {
+   digitalWrite(13,HIGH);
+   delay(500);
+ }
+ digitalWrite(13,LOW);
  //int ones = ((int)(temp))%10;
 //int decimals = ((int)((temp)*100.0))%100;
 //  lcd.print(ones);
@@ -81,6 +89,7 @@ void input(float voltages[]){
   //Serial.print("\n");
 
   }
+ 
 }
 
 float average(float voltages[]){
